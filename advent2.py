@@ -35,6 +35,15 @@ def left_over_data(data):
             new_data.append(row)
     return new_data
 
+test_data = [
+                [7, 6, 4, 2, 1],
+                [1, 2, 7, 8, 9],
+                [9, 7, 6, 2, 1],
+                [1, 3, 2, 4, 5],
+                [8, 6, 4, 4, 1],
+                [1, 3, 6, 7, 9]
+
+]
 
 if __name__ == "__main__":
     filename = "data2.txt"
@@ -43,6 +52,13 @@ if __name__ == "__main__":
     for row in data:
         if (strict_inc(row) or strict_dec(row)) and pass_condition(row):
             total += 1
-    print(total)
     new_data = left_over_data(data)
-    print(len(new_data) + total == len(data))
+    new_total = 0
+    for row in new_data:
+        n = len(row)
+        for i in range(n):
+            new_row = row[0:i] + row[i+1:]
+            if (strict_inc(new_row) or strict_dec(new_row)) and pass_condition(new_row):
+                new_total += 1
+                break
+    print(total + new_total)
