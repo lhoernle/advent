@@ -28,6 +28,14 @@ def pass_condition(A):
             return False
     return True
 
+def left_over_data(data):
+    new_data = []
+    for row in data:
+        if not ((strict_inc(row) or strict_dec(row)) and pass_condition(row)):
+            new_data.append(row)
+    return new_data
+
+
 if __name__ == "__main__":
     filename = "data2.txt"
     data = read_data(filename)
@@ -36,3 +44,5 @@ if __name__ == "__main__":
         if (strict_inc(row) or strict_dec(row)) and pass_condition(row):
             total += 1
     print(total)
+    new_data = left_over_data(data)
+    print(len(new_data) + total == len(data))
